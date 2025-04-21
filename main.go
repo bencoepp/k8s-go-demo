@@ -66,6 +66,11 @@ func main() {
 		fmt.Fprintf(w, "Config: %s", config)
 	})
 
+	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+		multiLog.Println("Accessed /health endpoint")
+		fmt.Println(w, "200")
+	})
+
 	multiLog.Println("Starting server on port 8080...")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
